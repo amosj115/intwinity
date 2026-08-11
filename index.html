@@ -1,386 +1,1144 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GoDeliver - Premium Fast Food, Groceries & Liquor Delivery</title>
-  <!-- Google Fonts: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Intwinity AI Labs develops intelligent software, AI-powered systems, automation solutions, and data-driven technologies that help businesses, institutions, and governments work smarter.">
+    <meta name="keywords"
+        content="AI, Artificial Intelligence, Software Development, Automation, Data Analytics, Pretoria, South Africa, TwinPlay AI, AgriVantage AI">
+    <meta name="author" content="Intwinity AI Labs">
+    <title>Intwinity AI Labs | Building Intelligent Solutions for Tomorrow</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-  <!-- Background decorative glows -->
-  <div class="glow-orb orb-1"></div>
-  <div class="glow-orb orb-2"></div>
-
-  <!-- Header -->
-  <header class="main-header">
-    <div class="header-container">
-      <div class="logo-section" id="logo-btn">
-        <div class="logo-icon">
-          <i data-lucide="zap"></i>
-        </div>
-        <span class="logo-text">Go<span class="highlight">Deliver</span></span>
-      </div>
-
-      <div class="address-selector" id="address-trigger">
-        <i data-lucide="map-pin" class="pin-icon"></i>
-        <div class="address-text">
-          <span class="label">Deliver to</span>
-          <span class="value" id="current-address">Select Address...</span>
-        </div>
-        <i data-lucide="chevron-down" class="chevron-icon"></i>
-      </div>
-
-      <div class="search-bar">
-        <i data-lucide="search" class="search-icon"></i>
-        <input type="text" id="global-search" placeholder="Search for food, groceries, liquor, or stores...">
-      </div>
-
-      <div class="header-actions">
-        <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">
-          <i data-lucide="sun" class="sun-icon"></i>
-          <i data-lucide="moon" class="moon-icon"></i>
-        </button>
-        <button class="cart-trigger" id="cart-btn" aria-label="View shopping cart">
-          <i data-lucide="shopping-bag"></i>
-          <span class="cart-count" id="cart-badge">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content Wrapper -->
-  <main class="content-wrapper">
-    <!-- Category Hero Header -->
-    <section class="hero-section" id="hero-sec">
-      <div class="hero-content">
-        <h1>Your favorite items, <br>delivered <span class="gradient-text">instantly.</span></h1>
-        <p>Order from top-tier fast food joints, local grocery stores, and premium liquor merchants with ultra-fast delivery.</p>
-        <div class="hero-cta-buttons">
-          <button class="hero-btn fast-food-btn" data-category="fast-food">
-            <i data-lucide="pizza"></i> Fast Food
-          </button>
-          <button class="hero-btn grocery-btn" data-category="groceries">
-            <i data-lucide="shopping-cart"></i> Groceries
-          </button>
-          <button class="hero-btn liquor-btn" data-category="liquor">
-            <i data-lucide="wine"></i> Liquor
-          </button>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="delivery-hero-card">
-          <div class="status-pill">
-            <div class="dot green-pulse"></div>
-            <span>Fast Delivery (15-30 mins)</span>
-          </div>
-          <div class="card-details">
-            <div class="user-avatar">
-              <i data-lucide="user"></i>
-            </div>
-            <div class="msg-box">
-              <strong>Alex (Driver)</strong>
-              <span>On my way to your location!</span>
-            </div>
-          </div>
-          <div class="card-map-preview">
-            <div class="dotted-path"></div>
-            <div class="map-icon user-icon"><i data-lucide="home"></i></div>
-            <div class="map-icon scooter-icon"><i data-lucide="bike"></i></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Subcategories / Filter Pills -->
-    <section class="filters-section">
-      <div class="category-tabs">
-        <button class="tab-btn active" data-category="all">
-          <i data-lucide="grid"></i> All Categories
-        </button>
-        <button class="tab-btn" data-category="fast-food">
-          <i data-lucide="burger"></i> Fast Food
-        </button>
-        <button class="tab-btn" data-category="groceries">
-          <i data-lucide="apple"></i> Groceries
-        </button>
-        <button class="tab-btn" data-category="liquor">
-          <i data-lucide="beer"></i> Liquor
-        </button>
-      </div>
-
-      <div class="sort-filters">
-        <button class="filter-chip" id="filter-rating">
-          <i data-lucide="star"></i> Rating 4.5+
-        </button>
-        <button class="filter-chip" id="filter-free">
-          Free Delivery
-        </button>
-        <button class="filter-chip" id="filter-fast">
-          <i data-lucide="clock"></i> Under 30 mins
-        </button>
-      </div>
-    </section>
-
-    <!-- Store Grid Container -->
-    <section class="stores-section">
-      <h2 class="section-title" id="stores-title">Popular Stores Near You</h2>
-      <div class="store-grid" id="store-grid">
-        <!-- Dynamically populated via JS -->
-      </div>
-    </section>
-
-    <!-- Store Detail Page View (Hidden by default, slides in/out) -->
-    <section class="store-detail-page" id="store-detail-page">
-      <button class="back-btn" id="close-store-btn">
-        <i data-lucide="arrow-left"></i> Back to Stores
-      </button>
-      <div class="store-banner" id="store-banner">
-        <div class="store-banner-overlay"></div>
-        <div class="store-banner-info">
-          <span class="store-badge" id="store-cat-badge">Fast Food</span>
-          <h1 id="store-detail-name">Burger Fusion</h1>
-          <div class="store-meta-info">
-            <span class="meta-item rating"><i data-lucide="star"></i> <span id="store-detail-rating">4.8</span></span>
-            <span class="meta-item time"><i data-lucide="clock"></i> <span id="store-detail-time">20-30 mins</span></span>
-            <span class="meta-item fee"><i data-lucide="truck"></i> <span id="store-detail-fee">Free Delivery</span></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-container">
-        <aside class="menu-sidebar" id="menu-categories-list">
-          <!-- Dynamically populated with category links -->
-        </aside>
-        <div class="menu-content" id="menu-items-grid">
-          <!-- Dynamically populated store items -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Active Tracker Section (Hidden until order is placed) -->
-    <section class="order-tracker-section" id="order-tracker-section">
-      <div class="tracker-card">
-        <div class="tracker-header">
-          <h2>Live Order Tracking</h2>
-          <div class="eta-box">
-            <span class="eta-title">Estimated Delivery</span>
-            <span class="eta-time" id="tracker-eta">25 mins</span>
-          </div>
-        </div>
-
-        <div class="tracker-layout">
-          <div class="tracker-steps">
-            <div class="step active" id="step-received">
-              <div class="step-icon"><i data-lucide="check"></i></div>
-              <div class="step-details">
-                <h3>Order Confirmed</h3>
-                <p>We've received your order and the store is preparing it.</p>
-              </div>
-            </div>
-            <div class="step" id="step-preparing">
-              <div class="step-icon"><i data-lucide="chef-hat"></i></div>
-              <div class="step-details">
-                <h3>Preparing Order</h3>
-                <p>Chefs/Staff are getting everything ready and packed.</p>
-              </div>
-            </div>
-            <div class="step" id="step-delivering">
-              <div class="step-icon"><i data-lucide="bike"></i></div>
-              <div class="step-details">
-                <h3>Out for Delivery</h3>
-                <p>Your courier is on their way with your packages.</p>
-              </div>
-            </div>
-            <div class="step" id="step-arrived">
-              <div class="step-icon"><i data-lucide="home"></i></div>
-              <div class="step-details">
-                <h3>Arrived</h3>
-                <p>Order is at your doorstep! Enjoy your items.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="tracker-map-container">
-            <div class="map-overlay">
-              <div class="courier-card-mini">
-                <div class="courier-avatar">
-                  <i data-lucide="user"></i>
+    <!-- Navigation Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="#home" class="logo-container" aria-label="Intwinity AI Labs Home">
+                <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="url(#logo-grad)" stroke-width="4" />
+                    <!-- Interlocking infinity/neural connections representing twins and AI -->
+                    <path
+                        d="M32 50 C 32 40, 43 40, 50 50 C 57 60, 68 60, 68 50 C 68 40, 57 40, 50 50 C 43 60, 32 60, 32 50 Z"
+                        stroke="url(#logo-grad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="32" cy="50" r="3" fill="#1E88E5" class="pulsing-dot-1" />
+                    <circle cx="68" cy="50" r="3" fill="#1E88E5" class="pulsing-dot-2" />
+                    <circle cx="50" cy="50" r="3" fill="#0A4D9C" class="pulsing-dot-3" />
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100">
+                            <stop offset="0%" stop-color="#0A4D9C" />
+                            <stop offset="50%" stop-color="#1E88E5" />
+                            <stop offset="100%" stop-color="#00E5FF" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="logo-text">
+                    <span class="brand-name">INTWINITY</span>
+                    <span class="brand-sub">AI LABS</span>
                 </div>
-                <div>
-                  <h4>Carlos S.</h4>
-                  <span>Courier • Honda PCX</span>
+            </a>
+
+            <!-- Mobile Navigation Toggle -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <!-- Nav Menu -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#industries" class="nav-link">Industries</a></li>
+                    <li><a href="#pipeline" class="nav-link">Pipeline</a></li>
+                    <li><a href="#why-choose-us" class="nav-link">Why Us</a></li>
+                    <li><a href="#process" class="nav-link">Our Process</a></li>
+                    <li><a href="#contact" class="nav-link nav-btn">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <canvas id="hero-canvas" class="hero-canvas"></canvas>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">Next-Generation AI Intelligence</span>
+                    </div>
+                    <h1 class="hero-title">Building Intelligent Solutions for Tomorrow</h1>
+                    <p class="hero-subtitle">Intwinity AI Labs develops intelligent software, AI-powered systems,
+                        automation solutions, and data-driven technologies that help businesses, institutions, and
+                        governments work smarter.</p>
+                    <div class="hero-actions">
+                        <a href="#services" class="btn btn-primary">Explore Our Solutions</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                    </div>
                 </div>
-                <div class="call-courier"><i data-lucide="phone"></i></div>
-              </div>
+                <div class="hero-visual">
+                    <div class="visual-container">
+                        <!-- Abstract technological hub/neural net visual element -->
+                        <div class="tech-orb-outer">
+                            <div class="tech-orb-middle">
+                                <div class="tech-orb-inner"></div>
+                            </div>
+                        </div>
+                        <div class="floating-data-card card-1">
+                            <span class="fd-icon">🤖</span>
+                            <div class="fd-info">
+                                <h4>AI Chatbots</h4>
+                                <p>Automating customer success</p>
+                            </div>
+                        </div>
+                        <div class="floating-data-card card-2">
+                            <span class="fd-icon">📊</span>
+                            <div class="fd-info">
+                                <h4>Data Analytics</h4>
+                                <p>Actionable intelligence</p>
+                            </div>
+                        </div>
+                        <div class="floating-data-card card-3">
+                            <span class="fd-icon">⚙️</span>
+                            <div class="fd-info">
+                                <h4>Automation</h4>
+                                <p>Streamlined business flows</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Canvas Map Animation -->
-            <canvas id="tracker-map"></canvas>
-          </div>
-        </div>
-
-        <div class="tracker-footer">
-          <button class="btn btn-secondary" id="track-back-btn">Back to Browsing</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Address Selection Modal -->
-  <div class="modal-overlay" id="address-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Enter Delivery Address</h3>
-        <button class="close-modal" id="close-address-modal"><i data-lucide="x"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="search-input-wrapper">
-          <i data-lucide="search" class="input-icon"></i>
-          <input type="text" id="address-input" placeholder="Start typing address..." value="142 Ocean Drive, Miami FL">
-        </div>
-        <div class="recent-addresses">
-          <h4>Recent Addresses</h4>
-          <div class="address-row" data-addr="142 Ocean Drive, Miami FL">
-            <i data-lucide="history"></i>
-            <span>142 Ocean Drive, Miami FL</span>
-          </div>
-          <div class="address-row" data-addr="88 Wall Street, New York NY">
-            <i data-lucide="history"></i>
-            <span>88 Wall Street, New York NY</span>
-          </div>
-          <div class="address-row" data-addr="742 Evergreen Terrace, Springfield">
-            <i data-lucide="history"></i>
-            <span>742 Evergreen Terrace, Springfield</span>
-          </div>
-        </div>
-        <button class="btn btn-primary w-full" id="save-address-btn">Confirm Address</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Shopping Cart Drawer (Right-sided panel) -->
-  <div class="drawer-overlay" id="cart-drawer">
-    <div class="drawer-panel">
-      <div class="drawer-header">
-        <h3>Your Cart</h3>
-        <button class="close-drawer" id="close-cart-btn"><i data-lucide="x"></i></button>
-      </div>
-      <div class="drawer-body" id="cart-items-container">
-        <!-- Dynamic Cart Items -->
-        <div class="empty-cart-state">
-          <i data-lucide="shopping-bag" class="empty-icon"></i>
-          <p>Your cart is empty</p>
-          <button class="btn btn-secondary" id="cart-explore-btn">Explore Stores</button>
-        </div>
-      </div>
-      <div class="drawer-footer" id="cart-footer" style="display: none;">
-        <div class="price-breakdown">
-          <div class="price-row">
-            <span>Subtotal</span>
-            <span id="cart-subtotal">$0.00</span>
-          </div>
-          <div class="price-row">
-            <span>Delivery Fee</span>
-            <span id="cart-delivery-fee">$0.00</span>
-          </div>
-          <div class="price-row">
-            <span>Service Fee & Taxes</span>
-            <span id="cart-tax">$0.00</span>
-          </div>
-          <div class="price-row total">
-            <span>Total</span>
-            <span id="cart-total">$0.00</span>
-          </div>
-        </div>
-        <button class="btn btn-primary w-full" id="checkout-trigger-btn">Proceed to Checkout</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Checkout Modal -->
-  <div class="modal-overlay" id="checkout-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Checkout Details</h3>
-        <button class="close-modal" id="close-checkout-modal"><i data-lucide="x"></i></button>
-      </div>
-      <div class="modal-body">
-        <form id="checkout-form" onsubmit="event.preventDefault();">
-          <div class="form-group">
-            <label for="checkout-name">Full Name</label>
-            <input type="text" id="checkout-name" required placeholder="John Doe">
-          </div>
-          <div class="form-group">
-            <label for="checkout-phone">Phone Number</label>
-            <input type="tel" id="checkout-phone" required placeholder="+1 (555) 000-0000">
-          </div>
-          <div class="form-group">
-            <label>Payment Method</label>
-            <div class="payment-selector">
-              <label class="payment-option active">
-                <input type="radio" name="payment" value="card" checked>
-                <i data-lucide="credit-card"></i> Card Ending 4242
-              </label>
-              <label class="payment-option">
-                <input type="radio" name="payment" value="apple">
-                <i data-lucide="smartphone"></i> Apple Pay
-              </label>
+            <div class="hero-scroll-down">
+                <a href="#about" aria-label="Scroll Down">
+                    <span class="scroll-arrow"></span>
+                </a>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="checkout-notes">Driver Delivery Notes</label>
-            <textarea id="checkout-notes" rows="2" placeholder="Leave at the door / ring bell..."></textarea>
-          </div>
-          <div class="checkout-summary-pill">
-            <span>Ordering from: <strong id="checkout-store-name">Burger Fusion</strong></span>
-            <span>Total Pay: <strong id="checkout-total-amt">$0.00</strong></span>
-          </div>
-          <button type="submit" class="btn btn-primary w-full" id="place-order-btn">
-            <span class="btn-text">Place Order</span>
-            <div class="spinner" id="checkout-spinner" style="display: none;"></div>
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
+        </section>
 
-  <!-- Item Options Modal (Item details adjustment before adding to cart) -->
-  <div class="modal-overlay" id="item-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="item-modal-title">Item Title</h3>
-        <button class="close-modal" id="close-item-modal"><i data-lucide="x"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="item-modal-desc-row">
-          <img id="item-modal-img" src="" alt="item preview" class="item-modal-image">
-          <p id="item-modal-desc">Delicious food item with fresh ingredients.</p>
-        </div>
-        <div class="item-options-section">
-          <h4>Quantity</h4>
-          <div class="quantity-selector-modal">
-            <button class="qty-btn" id="item-qty-minus"><i data-lucide="minus"></i></button>
-            <span class="qty-val" id="item-qty-val">1</span>
-            <button class="qty-btn" id="item-qty-plus"><i data-lucide="plus"></i></button>
-          </div>
-        </div>
-        <button class="btn btn-primary w-full" id="item-modal-add-btn">Add to Order • <span id="item-modal-price">$0.00</span></button>
-      </div>
-    </div>
-  </div>
+        <!-- About Us Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">About Us</span>
+                    <h2 class="section-title">Empowering Organizations Through AI</h2>
+                    
+                </div>
 
-  <!-- Lucide Icons initialization -->
-  <script>
-    lucide.createIcons();
-  </script>
-  <!-- Application Logic -->
-  <script src="app.js"></script>
+                <div class="about-grid">
+                    <!-- Left: Description and Values -->
+                    <div class="about-info-block">
+                        <div class="about-card who-we-are">
+                            <h3>Who We Are</h3>
+                            <p>Intwinity AI Labs is a South African AI and technology company founded by twin brothers passionate about solving real-world challenges through innovation. We develop intelligent software, automation systems, and data-driven solutions for businesses, government, and institutions. Our mission is to make AI practical, accessible, and impactful. We are committed to building technology that empowers people, improves efficiency, and drives digital transformation.</p>
+                        </div>
+
+                        <div class="about-mission-vision">
+                            <div class="mission-vision-card">
+                                <div class="card-icon-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        class="about-svg-icon">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                    </svg>
+                                </div>
+                                <h4>Our Mission</h4>
+                                <p>To build practical AI solutions that empower organizations through automation,
+                                    intelligence, and innovation.</p>
+                            </div>
+                            <div class="mission-vision-card">
+                                <div class="card-icon-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        class="about-svg-icon">
+                                        <path
+                                            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7zm10 3a3 3 0 100-6 3 3 0 000 6z" />
+                                    </svg>
+                                </div>
+                                <h4>Our Vision</h4>
+                                <p>To become Africa’s leading AI innovation company, transforming industries through
+                                    responsible and impactful artificial intelligence.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Core Values -->
+                    <div class="about-values-block">
+                        <h3 class="values-heading">Our Core Values</h3>
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <span class="value-number">01</span>
+                                <h5>Innovation</h5>
+                                
+                            </div>
+                            <div class="value-item">
+                                <span class="value-number">02</span>
+                                <h5>Excellence</h5>
+                                
+                            </div>
+                            <div class="value-item">
+                                <span class="value-number">03</span>
+                                <h5>Integrity</h5>
+                               
+                            </div>
+                            <div class="value-item">
+                                <span class="value-number">04</span>
+                                <h5>Collaboration</h5>
+                                
+                            </div>
+                            <div class="value-item">
+                                <span class="value-number">05</span>
+                                <h5>Continuous Learning</h5>
+                                
+                            </div>
+                            <div class="value-item">
+                                <span class="value-number">06</span>
+                                <h5>Customer Success</h5>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Our Services</span>
+                 
+                </div>
+
+                <!-- Live Search and Filter Controls -->
+                <div class="services-controls">
+                  
+                    
+                </div>
+
+                <!-- Services Grid -->
+                <div class="services-grid" id="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card" data-category="ai">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                                <path d="M12 6v12" />
+                                <path d="M6 12h12" />
+                            </svg>
+                        </div>
+                        <h3>Artificial Intelligence Solutions</h3>
+                        
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card" data-category="software">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                <polyline points="2 17 12 22 22 17" />
+                                <polyline points="2 12 12 17 22 12" />
+                            </svg>
+                        </div>
+                        <h3>Custom Software Development</h3>
+                       
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card" data-category="software">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                        <h3>Business Process Automation</h3>
+                        
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card" data-category="analytics">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10" />
+                                <line x1="12" y1="20" x2="12" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                        </div>
+                        <h3>Data Analytics & Business Intelligence</h3>
+                        
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="service-card" data-category="ai">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                        </div>
+                        <h3>AI Chatbots & Virtual Assistants</h3>
+                        
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="service-card" data-category="ai">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <line x1="9" y1="9" x2="15" y2="15" />
+                                <line x1="15" y1="9" x2="9" y2="15" />
+                            </svg>
+                        </div>
+                        <h3>Machine Learning Solutions</h3>
+                        
+                    </div>
+
+                    <!-- Service 7 -->
+                    <div class="service-card" data-category="analytics">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                                <polyline points="17 6 23 6 23 12" />
+                            </svg>
+                        </div>
+                        <h3>Predictive Analytics</h3>
+                        
+                    </div>
+
+                    <!-- Service 8 -->
+                    <div class="service-card" data-category="ai">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                <circle cx="12" cy="13" r="4" />
+                            </svg>
+                        </div>
+                        <h3>Computer Vision</h3>
+                      
+                    </div>
+
+                    <!-- Service 9 -->
+                    <div class="service-card" data-category="software">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                            </svg>
+                        </div>
+                        <h3>Cloud-Based Applications</h3>
+                       
+                    </div>
+
+                    <!-- Service 10 -->
+                    <div class="service-card" data-category="analytics">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                <path d="M2 12h20" />
+                            </svg>
+                        </div>
+                        <h3>Digital Transformation Consulting</h3>
+                        
+                    </div>
+
+                    <!-- Service 11 -->
+                    <div class="service-card" data-category="analytics">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <rect x="7" y="7" width="10" height="10" />
+                            </svg>
+                        </div>
+                        <h3>Dashboard Development (Power BI)</h3>
+                       
+                    </div>
+
+                    <!-- Service 12 -->
+                    <div class="service-card" data-category="software">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1" />
+                                <path d="M18 8h4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-4" />
+                                <circle cx="8" cy="12" r="2" />
+                            </svg>
+                        </div>
+                        <h3>API Integration</h3>
+                       
+                    </div>
+
+                    <!-- Service 13 -->
+                    <div class="service-card" data-category="analytics">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                <path d="M2 17l10 5 10-5" />
+                                <path d="M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                        <h3>AI Strategy & Advisory</h3>
+                       
+                    </div>
+                </div>
+
+                <!-- No Services Found Message -->
+                <div class="no-results" id="no-results" style="display: none;">
+                    <p>No services match your query. Try a different search term or category filter.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries We Serve Section -->
+        <section id="industries" class="section industries-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Industries</span>
+                    <h2 class="section-title">Sectors We Empower</h2>
+                    <p class="section-subtitle">Practical AI and digital solutions for modern industries.</p>
+                </div>
+
+                <div class="industries-grid">
+                    <div class="industry-card">
+                        <div class="ind-icon">🌾</div>
+                        <h4>Agriculture</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">🏛️</div>
+                        <h4>Government</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">⚕️</div>
+                        <h4>Healthcare</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">🎓</div>
+                        <h4>Education</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">🛒</div>
+                        <h4>Retail</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">🏭</div>
+                        <h4>Manufacturing</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">🚚</div>
+                        <h4>Logistics</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">🏢</div>
+                        <h4>Property Management</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">⚽</div>
+                        <h4>Sports</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">💳</div>
+                        <h4>Finance</h4>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="ind-icon">💼</div>
+                        <h4>Small & Medium Businesses</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Innovations Section -->
+        <section id="pipeline" class="section pipeline-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Featured Innovations</span>
+                    <h2 class="section-title">Innovation Pipeline</h2>
+                    <p class="section-subtitle">A preview of proprietary intelligent platforms and products currently
+                        under development at our labs.</p>
+                </div>
+
+                <div class="pipeline-grid">
+                    <!-- Innovation 1 -->
+                    <div class="pipeline-card">
+                        <div class="pipeline-badge">Coming Soon</div>
+                        <div class="pipeline-header">
+                            <span class="p-icon">⚽</span>
+                            <h3>TwinPlay AI</h3>
+                        </div>
+                        <p> Football analytics and performance intelligence </p>
+                        <div class="pipeline-footer">
+                            <span class="p-tag">Sports Tech</span>
+                            <span class="p-tag">Computer Vision</span>
+                        </div>
+                    </div>
+
+                    <!-- Innovation 2 -->
+                    <div class="pipeline-card">
+                        <div class="pipeline-badge">Coming Soon</div>
+                        <div class="pipeline-header">
+                            <span class="p-icon">🚜</span>
+                            <h3>AgriVantage AI</h3>
+                        </div>
+                        <p class="pipeline-desc">Smart agriculture decision support.</p>
+                        <div class="pipeline-footer">
+                            <span class="p-tag">AgriTech</span>
+                            <span class="p-tag">Data Analytics</span>
+                        </div>
+                    </div>
+
+                    <!-- Innovation 3 -->
+                    <div class="pipeline-card">
+                        <div class="pipeline-badge">Coming Soon</div>
+                        <div class="pipeline-header">
+                            <span class="p-icon">⚖️</span>
+                            <h3>Audit Intelligence Platform</h3>
+                        </div>
+                        <p class="pipeline-desc">An AI-powered auditing and corporate compliance solution.</p>
+                        <div class="pipeline-footer">
+                            <span class="p-tag">Fintech</span>
+                            <span class="p-tag">Automated Compliance</span>
+                        </div>
+                    </div>
+
+                    <!-- Innovation 4 -->
+                    <div class="pipeline-card">
+                        <div class="pipeline-badge">Coming Soon</div>
+                        <div class="pipeline-header">
+                            <span class="p-icon">📊</span>
+                            <h3>Government Analytics Suite</h3>
+                        </div>
+                        <p class="pipeline-desc">Intelligent reporting and operational insights.</p>
+                        <div class="pipeline-footer">
+                            <span class="p-tag">GovTech</span>
+                            <span class="p-tag">Business Intelligence</span>
+                        </div>
+                    </div>
+
+                    <!-- Innovation 5 -->
+                    <div class="pipeline-card">
+                        <div class="pipeline-badge">Coming Soon</div>
+                        <div class="pipeline-header">
+                            <span class="p-icon">📦</span>
+                            <h3>Supply Chain Intelligence</h3>
+                        </div>
+                        <p class="pipeline-desc">AI for procurement and logistics optimization.</p>
+                        <div class="pipeline-footer">
+                            <span class="p-tag">Logistics</span>
+                            <span class="p-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-choose-us" class="section why-section">
+            <div class="container">
+                <div class="section-header">
+                   
+                    <h2 class="section-title">Why Choose Intwinity AI Labs</h2>
+                   
+                </div>
+
+                <div class="why-grid">
+                    <!-- Why 1 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Tailored AI Solutions</h4>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Why 2 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Scalable Architecture</h4>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Why 3 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Modern Technologies</h4>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Why 4 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Data-Driven Decision Making</h4>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Why 5 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Secure Systems</h4>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Why 6 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Human-Centered AI</h4>
+                          
+                        </div>
+                    </div>
+
+                    <!-- Why 7 -->
+                    <div class="why-card">
+                        <div class="why-check">✓</div>
+                        <div class="why-content">
+                            <h4>Local Expertise, Global Standards</h4>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process Section -->
+        <section id="process" class="section process-section">
+            <div class="container">
+                <div class="section-header">
+                  
+                    <h2 class="section-title">Our Process</h2>
+                    
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-line">
+                        <div class="timeline-progress" id="timeline-progress"></div>
+                    </div>
+
+                    <div class="timeline-steps">
+                        <!-- Step 1 -->
+                        <div class="timeline-step active" data-step="1">
+                            <div class="step-num-bubble">1</div>
+                            <div class="step-content">
+                                <h3>Discover</h3>
+                              
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="timeline-step" data-step="2">
+                            <div class="step-num-bubble">2</div>
+                            <div class="step-content">
+                                <h3>Design</h3>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="timeline-step" data-step="3">
+                            <div class="step-num-bubble">3</div>
+                            <div class="step-content">
+                                <h3>Develop</h3>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="timeline-step" data-step="4">
+                            <div class="step-num-bubble">4</div>
+                            <div class="step-content">
+                                <h3>Deploy</h3>
+                               
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="timeline-step" data-step="5">
+                            <div class="step-num-bubble">5</div>
+                            <div class="step-content">
+                                <h3>Support</h3>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies Section -->
+        <section class="section tech-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Technologies</span>
+                
+                </div>
+
+                <div class="tech-slider-wrapper">
+                    <div class="tech-slider" id="tech-slider">
+                        <!-- Python -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">🐍</span>
+                            <span class="tl-name">Python</span>
+                        </div>
+                        <!-- Microsoft Azure -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">☁️</span>
+                            <span class="tl-name">Azure</span>
+                        </div>
+                        <!-- OpenAI -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">✨</span>
+                            <span class="tl-name">OpenAI</span>
+                        </div>
+                        <!-- Power BI -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">📊</span>
+                            <span class="tl-name">Power BI</span>
+                        </div>
+                        <!-- SQL -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">🗄️</span>
+                            <span class="tl-name">SQL</span>
+                        </div>
+                        <!-- PostgreSQL -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">🐘</span>
+                            <span class="tl-name">PostgreSQL</span>
+                        </div>
+                        <!-- React -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">⚛️</span>
+                            <span class="tl-name">React</span>
+                        </div>
+                        <!-- Flutter -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">📱</span>
+                            <span class="tl-name">Flutter</span>
+                        </div>
+                        <!-- Docker -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">🐳</span>
+                            <span class="tl-name">Docker</span>
+                        </div>
+                        <!-- GitHub -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">🐙</span>
+                            <span class="tl-name">GitHub</span>
+                        </div>
+                        <!-- TensorFlow -->
+                        <div class="tech-logo-card">
+                            <span class="tl-icon">🧠</span>
+                            <span class="tl-name">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Section -->
+        <section class="section founders-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Leadership</span>
+                    <h2 class="section-title">Founded by Twin Brothers</h2>
+                    <p class="section-subtitle">Shared vision, technical precision, and passion for artificial
+                        intelligence.</p>
+                </div>
+
+                <div class="founders-layout">
+                    <div class="founders-desc">
+                        <p>Intwinity AI Labs was founded by twin brothers driven by a shared passion for technology,
+                            artificial intelligence, and solving real-world challenges. The company is committed to
+                            building intelligent solutions that create meaningful impact across industries.</p>
+                        <p>Their synergistic background brings double the drive, uniting backend system engineering,
+                            database optimizations, complex mathematics, and modern UX architectures to guide the entire
+                            engineering pipeline.</p>
+                    </div>
+                    <div class="founders-cards">
+                        <!-- Founder 1 -->
+                        <div class="founder-card">
+                            <div class="founder-avatar-wrapper">
+                                <!-- Modern technology/twin representation SVG -->
+                                <svg class="founder-placeholder-svg" viewBox="0 0 100 100" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="avatar-grad-1" x1="0" y1="0" x2="100" y2="100">
+                                            <stop offset="0%" stop-color="#0A4D9C" />
+                                            <stop offset="100%" stop-color="#1E88E5" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="50" cy="50" r="50" fill="url(#avatar-grad-1)" />
+                                    <!-- Stylized abstract neural face/twin avatar -->
+                                    <circle cx="35" cy="40" r="4" fill="#FFFFFF" />
+                                    <circle cx="65" cy="40" r="4" fill="#FFFFFF" />
+                                    <path d="M 35 40 Q 50 25 65 40" stroke="#FFFFFF" stroke-width="2"
+                                        stroke-linecap="round" fill="none" />
+                                    <path d="M 30 65 Q 50 78 70 65" stroke="#FFFFFF" stroke-width="4"
+                                        stroke-linecap="round" fill="none" />
+                                    <path d="M 50 42 L 50 55" stroke="#FFFFFF" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <!-- Code background decoration -->
+                                    <text x="15" y="85" fill="rgba(255,255,255,0.25)" font-family="monospace"
+                                        font-size="10">&lt;AI&gt;</text>
+                                    <text x="65" y="85" fill="rgba(255,255,255,0.25)" font-family="monospace"
+                                        font-size="10">code</text>
+                                </svg>
+                            </div>
+                            <div class="founder-info">
+                                <h3>Co-Founder</h3>
+                                <p class="founder-role">AI & Engineering Director</p>
+                                <span class="founder-initials">Twin Brother A</span>
+                            </div>
+                        </div>
+
+                        <!-- Founder 2 -->
+                        <div class="founder-card">
+                            <div class="founder-avatar-wrapper">
+                                <!-- Modern technology/twin representation SVG -->
+                                <svg class="founder-placeholder-svg" viewBox="0 0 100 100" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="avatar-grad-2" x1="0" y1="0" x2="100" y2="100">
+                                            <stop offset="0%" stop-color="#1E88E5" />
+                                            <stop offset="100%" stop-color="#00E5FF" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="50" cy="50" r="50" fill="url(#avatar-grad-2)" />
+                                    <!-- Stylized abstract neural face/twin avatar -->
+                                    <circle cx="35" cy="40" r="4" fill="#FFFFFF" />
+                                    <circle cx="65" cy="40" r="4" fill="#FFFFFF" />
+                                    <path d="M 35 40 Q 50 25 65 40" stroke="#FFFFFF" stroke-width="2"
+                                        stroke-linecap="round" fill="none" />
+                                    <path d="M 30 65 Q 50 78 70 65" stroke="#FFFFFF" stroke-width="4"
+                                        stroke-linecap="round" fill="none" />
+                                    <path d="M 50 42 L 50 55" stroke="#FFFFFF" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <!-- Code background decoration -->
+                                    <text x="15" y="85" fill="rgba(255,255,255,0.25)" font-family="monospace"
+                                        font-size="10">{ data }</text>
+                                    <text x="65" y="85" fill="rgba(255,255,255,0.25)" font-family="monospace"
+                                        font-size="10">=&gt; AI</text>
+                                </svg>
+                            </div>
+                            <div class="founder-info">
+                                <h3>Co-Founder</h3>
+                                <p class="founder-role">Systems & Product Strategy</p>
+                                <span class="founder-initials">Twin Brother B</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Let's Connect</span>
+                    <h2 class="section-title">Contact Us</h2>
+                   
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Left: Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <form id="contact-form" class="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="form-name">Name</label>
+                                <input type="text" id="form-name" class="form-control" placeholder="Name" required>
+                                <span class="error-msg" id="name-error">Name</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-email">Email</label>
+                                <input type="email" id="form-email" class="form-control" placeholder="Email" required>
+                                <span class="error-msg" id="email-error">Email</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-company">Company</label>
+                                <input type="text" id="form-company" class="form-control" placeholder="Company" required>
+                                <span class="error-msg" id="company-error">Company</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-message">Message</label>
+                                <textarea id="form-message" class="form-control" rows="5" placeholder="Message"
+                                    required></textarea>
+                                <span class="error-msg" id="message-error">Message</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit" id="btn-submit">
+                                <span class="btn-text">Submit Message</span>
+                                <span class="loader" id="submit-loader"></span>
+                            </button>
+
+                            <!-- Form Status Alerts -->
+                            <div class="form-alert success" id="form-success-alert" style="display: none;">
+                                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <div>
+                                    <h4>Message Received!</h4>
+                                    <p>Thank you for contacting Intwinity AI Labs. We will reach back to you shortly.
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right: Info Details & Map -->
+                    <div class="contact-info-wrapper">
+                        <div class="contact-details">
+                            <div class="contact-info-item">
+                                <div class="ci-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                </div>
+                                <div class="ci-text">
+                                    <h4>Email Address</h4>
+                                    <p><a href="mailto:Mathibela.k@outlook.com">Mathibela.k@outlook.com</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="ci-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    </svg>
+                                </div>
+                                <div class="ci-text">
+                                    <h4>Phone Number</h4>
+                                    <p><a href="tel:+27608002987">+27 60 800 2987</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="ci-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                        <rect x="2" y="9" width="4" height="12" />
+                                        <circle cx="4" cy="4" r="2" />
+                                    </svg>
+                                </div>
+                                <div class="ci-text">
+                                    <h4>LinkedIn</h4>
+                                    <p><a href="https://linkedin.com/company/intwinity-ai-labs" target="_blank"
+                                            rel="noopener">linkedin.com/company/intwinity-ai-labs</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="ci-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </div>
+                                <div class="ci-text">
+                                    <h4>Corporate Office</h4>
+                                    <p>Pretoria, South Africa</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Beautiful simulated SVG Google Maps placeholder -->
+                        <div class="map-placeholder">
+                            <div class="map-overlay">
+                                <span class="map-pin-pulse"></span>
+                                <div class="map-card">
+                                    <h5>Intwinity AI Labs</h5>
+                                    <p>Pretoria, South Africa</p>
+                                    <a href="https://maps.google.com/?q=Pretoria,South+Africa" target="_blank"
+                                        class="map-link">View in Google Maps</a>
+                                </div>
+                            </div>
+                            <svg class="map-vector" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="250" fill="#E8ECEF" rx="8" />
+                                <!-- Grid/roads -->
+                                <path d="M 0,50 L 400,50 M 0,150 L 400,150 M 0,210 L 400,210" stroke="#FFFFFF"
+                                    stroke-width="6" />
+                                <path d="M 80,0 L 80,250 M 240,0 L 240,250 M 320,0 L 320,250" stroke="#FFFFFF"
+                                    stroke-width="6" />
+                                <!-- Diagonal road -->
+                                <path d="M -50,-50 L 450,280" stroke="#FFFFFF" stroke-width="10" />
+                                <!-- Highlighted route -->
+                                <path d="M 80,50 L 240,50 L 240,150" stroke="#1E88E5" stroke-width="3"
+                                    stroke-linecap="round" fill="none" opacity="0.6" />
+                                <!-- Buildings shapes -->
+                                <rect x="20" y="80" width="40" height="50" fill="#D3D9DE" rx="4" />
+                                <rect x="110" y="80" width="100" height="50" fill="#D3D9DE" rx="4" />
+                                <rect x="260" y="80" width="40" height="50" fill="#D3D9DE" rx="4" />
+                                <rect x="110" y="170" width="100" height="30" fill="#D3D9DE" rx="4" />
+                                <!-- River/Greenery -->
+                                <path d="M 350,0 Q 370,120 330,250" stroke="#B2DFDB" stroke-width="25" fill="none"
+                                    opacity="0.4" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <!-- Brand & Pitch -->
+            <div class="footer-brand-column">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" stroke="url(#footer-logo-grad)" stroke-width="4" />
+                        <path
+                            d="M32 50 C 32 40, 43 40, 50 50 C 57 60, 68 60, 68 50 C 68 40, 57 40, 50 50 C 43 60, 32 60, 32 50 Z"
+                            stroke="url(#footer-logo-grad)" stroke-width="6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <defs>
+                            <linearGradient id="footer-logo-grad" x1="0" y1="0" x2="100" y2="100">
+                                <stop offset="0%" stop-color="#0A4D9C" />
+                                <stop offset="100%" stop-color="#1E88E5" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="logo-text">
+                        <span class="brand-name">INTWINITY</span>
+                        <span class="brand-sub" style="color: #90A4AE;">AI LABS</span>
+                    </div>
+                </div>
+                <p class="footer-pitch">Delivering custom intelligent systems, deep automation, and data models to scale
+                    enterprises across Africa and beyond.</p>
+                <div class="footer-socials">
+                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-svg">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect x="2" y="9" width="4" height="12" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                    <a href="https://github.com" target="_blank" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-svg">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-svg">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Columns -->
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#pipeline">Innovation Pipeline</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container fb-container">
+                <p>&copy; 2026 Intwinity AI Labs. All rights reserved.</p>
+                <div class="fb-links">
+                    <a href="#privacy" class="modal-trigger-link">Privacy Policy</a>
+                    <span>&bull;</span>
+                    <a href="#terms" class="modal-trigger-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Modals for Privacy & Terms (Future/Legal requirements) -->
+    <div class="modal-overlay" id="modal-overlay">
+        <!-- Privacy Modal -->
+        <div class="modal-content" id="privacy-modal">
+            <button class="modal-close" id="privacy-close" aria-label="Close Modal">&times;</button>
+            <h2>Privacy Policy</h2>
+            <div class="modal-body">
+                <p>Last updated: July 14, 2026</p>
+                <p>Welcome to Intwinity AI Labs. We value your privacy and are committed to protecting any personal
+                    information you share with us through our contact inquiries.</p>
+                <h3>1. Information Collection</h3>
+                <p>We collect name, email address, company name, and message strings solely for the purpose of
+                    responding to project inquiries and business collaborations.</p>
+                <h3>2. Information Usage</h3>
+                <p>Your details will never be sold, distributed, or leased to third parties. We use industry-standard
+                    encryption practices to secure storage directories.</p>
+                <h3>3. Security</h3>
+                <p>We implement appropriate technical security measures to protect transaction databases and
+                    transmission data routes from unauthorized access.</p>
+            </div>
+        </div>
+
+        <!-- Terms Modal -->
+        <div class="modal-content" id="terms-modal">
+            <button class="modal-close" id="terms-close" aria-label="Close Modal">&times;</button>
+            <h2>Terms & Conditions</h2>
+            <div class="modal-body">
+                <p>Last updated: July 14, 2026</p>
+                <p>By browsing or submitting data to Intwinity AI Labs, you agree to comply with the terms set forth
+                    below.</p>
+                <h3>1. Intellectual Property</h3>
+                <p>All core proprietary products in our pipeline (including TwinPlay AI, AgriVantage AI, Audit
+                    Intelligence Platform) are protected under corporate trademark laws.</p>
+                <h3>2. Disclaimer</h3>
+                <p>Information on this website is for general informational and marketing purposes. While we strive for
+                    accuracy, development timelines of pipeline products are subject to adjust without liability.</p>
+                <h3>3. Governing Law</h3>
+                <p>These terms and conditions are governed by and construed in accordance with the laws of Pretoria,
+                    South Africa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
 </body>
+
 </html>
